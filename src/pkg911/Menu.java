@@ -70,6 +70,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btndenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndenunciaActionPerformed
         // TODO add your handling code here:
+        vplanilla.setVisible(true);
     }//GEN-LAST:event_btndenunciaActionPerformed
 
     private void btndenunciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndenunciasActionPerformed

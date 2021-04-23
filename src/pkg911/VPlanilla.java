@@ -1,11 +1,17 @@
 
 package pkg911;
 
+import generales.MFecha;
+import generales.Mensajes;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class VPlanilla extends javax.swing.JFrame {
-
+    private Mensajes msj;
     private DefaultListModel datos;
     public VPlanilla() {
         initComponents();
@@ -37,7 +43,8 @@ public class VPlanilla extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("DATOS DE LA DENUNCIA");
 
         jPanel1.setLayout(null);
         jPanel1.add(txtnombresolicitante);
@@ -115,51 +122,35 @@ public class VPlanilla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        
-        String fichero="Denuncias.txt";
-        boolean enc=true;
-        if (! (new File("fichero.txt")).exists() )
-        {
-            enc=false;
-        }
-        try
-        {
-            int lineas=0;
-            if(enc){
-                BufferedReader ficheroEntrada = new BufferedReader(
-                    new FileReader(new File("fichero.txt")));
-                String linea=null;
-                while ((linea=ficheroEntrada.readLine()) != null) {
-                    lineas++;
+        JFileChooser fc = new JFileChooser();
+        MFecha fecha= new MFecha();
+        int seleccion = fc.showSaveDialog(fc);
+        if (seleccion == JFileChooser.APPROVE_OPTION){
+            String fichero=fc.getSelectedFile().toString()+fecha.getFechaeuropea()+".txt";
+            boolean enc=true;
+            if (! (new File(fichero)).exists() ){
+                try {
+                    BufferedWriter fsalida=new BufferedWriter(new FileWriter(new File(fichero),enc));
+                    fsalida.write("solicitante:"+txtnombresolicitante.getText());
+                    fsalida.newLine();
+                    fsalida.write("ubicacion:"+txtubicacion.getText());
+                    fsalida.newLine();
+                    fsalida.write("referencia:"+txtreferencia.getText());
+                    fsalida.newLine();
+                    fsalida.write("link:"+txtlink.getText());
+                    fsalida.newLine();
+                    fsalida.write("observacion:"+txtobservacion.getText());
+                    fsalida.newLine();
+                    fsalida.close();
+                    msj = new Mensajes();
+                    msj.minformando("Denuncia guardada!!!");
+                } catch (IOException ef){
+                    System.out.println("Ha habido problemas: " +ef.getMessage() );
                 }
-                ficheroEntrada.close();
             }
-            lineas++;
-            BufferedWriter ficheroSalida;
-            ficheroSalida= new BufferedWriter(new FileWriter(new File("fichero.txt"),enc));
-            ficheroSalida.write(String.valueOf(lineas));
-            ficheroSalida.write(";");
-            ficheroSalida.write(txtnombresolicitante.getText());
-            ficheroSalida.write(";");
-            ficheroSalida.write(txtubicacion.getText());
-            ficheroSalida.write(";");
-            ficheroSalida.write(txtreferencia.getText());
-            ficheroSalida.write(";");
-            ficheroSalida.write(txtlink.getText());
-            ficheroSalida.write(";");
-            ficheroSalida.write(txtobservacion.getText());
-            ficheroSalida.write(";");
-            ficheroSalida.newLine();
-            
-            ficheroSalida.close();
-        }
-        catch (IOException errorDeFichero)
-        {
-            System.out.println(
-                "Ha habido problemas: " +
-                errorDeFichero.getMessage() );
         }
         
+       
     }//GEN-LAST:event_btnguardarActionPerformed
 
     
@@ -188,7 +179,7 @@ public class VPlanilla extends javax.swing.JFrame {
                 new VPlanilla().setVisible(true);
             }
         });
-    }*/
+    }/**/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnguardar;
