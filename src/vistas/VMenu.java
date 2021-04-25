@@ -1,20 +1,25 @@
 
-package pkg911;
+package vistas;
 
-import javax.swing.DefaultListModel;
+import controladores.CPlanilla;
+import java.awt.event.ActionListener;
 
-public class Menu extends javax.swing.JFrame {
+public class VMenu extends javax.swing.JFrame {
 
-    private DefaultListModel datos;
-    private VPlanilla vplanilla;
    
-    public Menu() {
+    private CPlanilla cplanilla;
+   
+    public VMenu() {
         initComponents();
-        datos = new DefaultListModel();
-       
-        vplanilla= new VPlanilla(datos);
+        setLocationRelativeTo(null);
+        setExtendedState(6);
     }
 
+    public void agregarListener(ActionListener accion) {
+        btndenuncia.addActionListener(accion);
+        btndenuncias.addActionListener(accion);
+    }
+    
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -31,23 +36,13 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.setText("Denuncia");
 
         btndenuncia.setText("Nueva");
-        btndenuncia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndenunciaActionPerformed(evt);
-            }
-        });
         jMenu1.add(btndenuncia);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Listado");
 
-        btndenuncias.setText("Lista de Denuncias");
-        btndenuncias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndenunciasActionPerformed(evt);
-            }
-        });
+        btndenuncias.setText("Denuncias Procesadas");
         jMenu2.add(btndenuncias);
 
         jMenuBar1.add(jMenu2);
@@ -67,15 +62,6 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btndenunciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndenunciaActionPerformed
-        // TODO add your handling code here:
-        vplanilla.setVisible(true);
-    }//GEN-LAST:event_btndenunciaActionPerformed
-
-    private void btndenunciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndenunciasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btndenunciasActionPerformed
 
     /*
     public static void main(String args[]) {
@@ -111,4 +97,18 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the btndenuncia
+     */
+    public javax.swing.JMenuItem getBtndenuncia() {
+        return btndenuncia;
+    }
+
+    /**
+     * @param btndenuncia the btndenuncia to set
+     */
+    public void setBtndenuncia(javax.swing.JMenuItem btndenuncia) {
+        this.btndenuncia = btndenuncia;
+    }
 }

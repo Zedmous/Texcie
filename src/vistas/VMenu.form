@@ -13,9 +13,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nueva"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndenunciaActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -26,11 +23,8 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="btndenuncias">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista de Denuncias"/>
+                <Property name="text" type="java.lang.String" value="Denuncias Procesadas"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndenunciasActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

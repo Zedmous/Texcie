@@ -1,26 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package vistas;
 
-package pkg911;
+import java.awt.event.ActionListener;
 
-import generales.MFecha;
-import generales.Mensajes;
-import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+public class VPlanilla extends javax.swing.JDialog {
 
-public class VPlanilla extends javax.swing.JFrame {
-    private Mensajes msj;
-    private DefaultListModel datos;
-    public VPlanilla() {
+    
+    public VPlanilla(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
-    public VPlanilla(DefaultListModel datos) {
-        initComponents();
-        this.datos=datos;
+    public void agregarListener(ActionListener accion) {
+        btnguardar.addActionListener(accion);
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,7 +40,6 @@ public class VPlanilla extends javax.swing.JFrame {
         btnguardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("DATOS DE LA DENUNCIA");
 
         jPanel1.setLayout(null);
         jPanel1.add(txtnombresolicitante);
@@ -99,11 +94,6 @@ public class VPlanilla extends javax.swing.JFrame {
         jLabel5.setBounds(10, 210, 230, 16);
 
         btnguardar.setText("Guardar");
-        btnguardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnguardarActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnguardar);
         btnguardar.setBounds(10, 340, 500, 32);
 
@@ -111,50 +101,20 @@ public class VPlanilla extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        JFileChooser fc = new JFileChooser();
-        MFecha fecha= new MFecha();
-        int seleccion = fc.showSaveDialog(fc);
-        if (seleccion == JFileChooser.APPROVE_OPTION){
-            String fichero=fc.getSelectedFile().toString()+fecha.getFechaeuropea()+".txt";
-            boolean enc=true;
-            if (! (new File(fichero)).exists() ){
-                try {
-                    BufferedWriter fsalida=new BufferedWriter(new FileWriter(new File(fichero),enc));
-                    fsalida.write("solicitante:"+txtnombresolicitante.getText());
-                    fsalida.newLine();
-                    fsalida.write("ubicacion:"+txtubicacion.getText());
-                    fsalida.newLine();
-                    fsalida.write("referencia:"+txtreferencia.getText());
-                    fsalida.newLine();
-                    fsalida.write("link:"+txtlink.getText());
-                    fsalida.newLine();
-                    fsalida.write("observacion:"+txtobservacion.getText());
-                    fsalida.newLine();
-                    fsalida.close();
-                    msj = new Mensajes();
-                    msj.minformando("Denuncia guardada!!!");
-                } catch (IOException ef){
-                    System.out.println("Ha habido problemas: " +ef.getMessage() );
-                }
-            }
-        }
-        
-       
-    }//GEN-LAST:event_btnguardarActionPerformed
-
-    
-    /*public static void main(String args[]) {
+    /*
+    public static void main(String args[]) {
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -172,14 +132,21 @@ public class VPlanilla extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VPlanilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VPlanilla().setVisible(true);
+                VPlanilla dialog = new VPlanilla(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
-    }/**/
+    }
+    /**/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnguardar;
@@ -199,4 +166,88 @@ public class VPlanilla extends javax.swing.JFrame {
     private javax.swing.JTextArea txtreferencia;
     private javax.swing.JTextArea txtubicacion;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the btnguardar
+     */
+    public javax.swing.JButton getBtnguardar() {
+        return btnguardar;
+    }
+
+    /**
+     * @param btnguardar the btnguardar to set
+     */
+    public void setBtnguardar(javax.swing.JButton btnguardar) {
+        this.btnguardar = btnguardar;
+    }
+
+    /**
+     * @return the txtlink
+     */
+    public javax.swing.JTextArea getTxtlink() {
+        return txtlink;
+    }
+
+    /**
+     * @param txtlink the txtlink to set
+     */
+    public void setTxtlink(javax.swing.JTextArea txtlink) {
+        this.txtlink = txtlink;
+    }
+
+    /**
+     * @return the txtnombresolicitante
+     */
+    public javax.swing.JTextField getTxtnombresolicitante() {
+        return txtnombresolicitante;
+    }
+
+    /**
+     * @param txtnombresolicitante the txtnombresolicitante to set
+     */
+    public void setTxtnombresolicitante(javax.swing.JTextField txtnombresolicitante) {
+        this.txtnombresolicitante = txtnombresolicitante;
+    }
+
+    /**
+     * @return the txtobservacion
+     */
+    public javax.swing.JTextArea getTxtobservacion() {
+        return txtobservacion;
+    }
+
+    /**
+     * @param txtobservacion the txtobservacion to set
+     */
+    public void setTxtobservacion(javax.swing.JTextArea txtobservacion) {
+        this.txtobservacion = txtobservacion;
+    }
+
+    /**
+     * @return the txtreferencia
+     */
+    public javax.swing.JTextArea getTxtreferencia() {
+        return txtreferencia;
+    }
+
+    /**
+     * @param txtreferencia the txtreferencia to set
+     */
+    public void setTxtreferencia(javax.swing.JTextArea txtreferencia) {
+        this.txtreferencia = txtreferencia;
+    }
+
+    /**
+     * @return the txtubicacion
+     */
+    public javax.swing.JTextArea getTxtubicacion() {
+        return txtubicacion;
+    }
+
+    /**
+     * @param txtubicacion the txtubicacion to set
+     */
+    public void setTxtubicacion(javax.swing.JTextArea txtubicacion) {
+        this.txtubicacion = txtubicacion;
+    }
 }

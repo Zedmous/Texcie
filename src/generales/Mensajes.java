@@ -70,7 +70,6 @@ public class Mensajes {
     //MENSAJE DE ACCION NO IMPLEMENTADA
     public void mnoimplementado(){
         JOptionPane.showMessageDialog(null, "Accion no implementada","NO IMPLEMENTADO",JOptionPane.ERROR_MESSAGE);
-        
     }
     //MENSAJES PARA ACCESOS DEL SISTEMA Y SALIDAS DEL SISTEMA
     public void mingresarsistema(String usuario){
